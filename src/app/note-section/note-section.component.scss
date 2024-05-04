@@ -7,11 +7,16 @@ main {
 
 // Navigation
 header {
+    --grid-unit: 32;
+    --grid-val: calc(100/var(--grid-unit));
+    --site-width: 1200px;
+    --side-padding: calc(var(--grid-val)*2vw);
+
     display: flex;
     width: 100%;
+    padding: 1em var(--side-padding);
     align-items: center;
     gap: 1rem;
-    padding: 1em;
     background-color: var(--clr-secondary);
 
     & .search-bar {
@@ -40,12 +45,18 @@ header {
         &::before {
             content: '+';
         }
-        @include mq(600px) {
+        @include mq(40em) {
             min-width: 20%;
             &::before {
                 content: 'Add Note';
             }
         }
+        @include mq(60em) {
+            min-width: 10%;
+        }
+    }
+    @include mq(84em) {
+        padding: 2em var(--side-padding);
     }
 }
 
@@ -59,22 +70,33 @@ h1 {
     margin: 1em 0;
 }
 
+.container {
+    --max-width: 1110px;
+    --container-padding: 1rem;
+    
+    width: min(var(--max-width), 100% - (var(--container-padding) * 2));  
+    margin-inline: auto;
+}
+
 .note-section {
     display: grid;
+    margin: 0 auto;
     overflow-y: auto;
     overflow-x: hidden;
-    max-height: 65%;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    max-height: 70%;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
     gap: 1rem;
     padding: 1em;
-    justify-content: center;
+    @include mq(60em) {
+        max-width: 70%;
+    }
 }
 
 .note {
     background: var(--clr-primary);
     color: var(--clr-secondary);
     padding: 1em;
-    border-radius: 5px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     gap: 1rem;

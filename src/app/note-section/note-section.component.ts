@@ -12,9 +12,9 @@ import { NoteFormComponent } from '../note-form/note-form.component';
   styleUrl: './note-section.component.scss'
 })
 export class NoteSectionComponent implements OnInit{
-  
   notes: Note[] = [];
   formToggle: boolean = false;
+  selectedNoteIndex: number = -1;
 
   constructor(private notesService: NotesService) {}
 
@@ -24,5 +24,16 @@ export class NoteSectionComponent implements OnInit{
 
   toggleForm = (): void => {
     this.formToggle = !this.formToggle;
+  }
+
+  onSelected = (index: number): void => {}
+
+  onEditPressed = (index: number): void => {
+    this.selectedNoteIndex = index;
+    this.formToggle = true;
+  }
+
+  private resetForm = (): void => {
+    this.formToggle = false;
   }
 }
