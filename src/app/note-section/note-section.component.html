@@ -1,10 +1,25 @@
-@for (note of notes; track $index) {
-    <div class="note">
-        <div class="note-header">
-            <div class="note-title" style="color: black;">{{ note.title }}</div>
-        </div>
-        <div class="note-body">
-            <div class="note-content" style="color: black;">{{ note.content }}</div>
-        </div>
-    </div>
-}
+<main>
+    <header>
+        <form action="">
+            <label for="">
+                <input type="text" class="search-bar" placeholder="Search">
+            </label>
+        </form>
+        <button> Add Note </button>
+    </header>
+    <h1>Your Notes</h1>
+    <section>
+        @for (note of notes; track $index) {
+            <div class="note">
+                <article class="note-content">
+                    <div class="note-header">
+                        <h2 class="note-title" style="color: black;">{{ note.title }}</h2>
+                    </div>
+                    <div class="note-body">
+                        <p class="note-content" style="color: black;">{{ note.content }}</p>
+                    </div>
+                </article>
+            </div>
+        }
+    </section>
+</main>
