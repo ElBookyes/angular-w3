@@ -24,11 +24,11 @@
 }
 
 :root {
-  --background: #F8E8EE;
-  --clr-text: #F2BED1;
-  --clr-primary: #FDCEDF;
-  --clr-secondary: #dddbff;
-  --clr-accent:#F9F5F6;
+  --background: #222831;
+  --clr-text: #EEEEEE;
+  --clr-primary: #00ADB5;
+  --clr-secondary: #393E46;
+  --clr-accent:#FFFF;
 }
 
 /* Box sizing rules */
@@ -74,7 +74,8 @@ body {
   font-family: var(--ff-primary);
   text-rendering: optimizeSpeed;
   line-height: 1.5;
-  
+  background-color: var(--background);
+  color: var(--clr-text);
 }
 
 /* A elements that don't have a class get default styles */
