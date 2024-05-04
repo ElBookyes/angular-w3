@@ -5,6 +5,7 @@ main {
     width: 100%;
 }
 
+// Navigation
 header {
     display: flex;
     width: 100%;
@@ -43,6 +44,71 @@ header {
             min-width: 20%;
             &::before {
                 content: 'Add Note';
+            }
+        }
+    }
+}
+
+// Note Section
+
+h1 {
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+    color: var(--clr-primary);
+    margin: 1em 0;
+}
+
+.note-section {
+    display: grid;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 65%;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    padding: 1em;
+    justify-content: center;
+}
+
+.note {
+    background: var(--clr-primary);
+    color: var(--clr-secondary);
+    padding: 1em;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    &:hover {
+        background: var(--clr-accent);
+    }
+    & .note-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    & .note-content {
+        font-size: 1rem;
+    }
+    & .note-actions {
+        display: flex;
+        gap: 1rem;
+        position: absolute;
+        bottom: 1em;
+        right: 1em;
+        & button {
+            background: var(--clr-primary);
+            color: var(--clr-text);
+            border: 0;
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            &:hover,
+            &:focus {
+                background: var(--clr-accent);
+                color: var(--clr-primary);
             }
         }
     }

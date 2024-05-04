@@ -1,20 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NotesService } from '../notes.service';
 import { Note } from '../noteInterface';
+import { NoteFormComponent } from '../note-form/note-form.component';
 
 
 @Component({
   selector: 'app-note-section',
   standalone: true,
-  imports: [],
+  imports: [NoteFormComponent],
   templateUrl: './note-section.component.html',
   styleUrl: './note-section.component.scss'
 })
-export class NoteSectionComponent {
+export class NoteSectionComponent implements OnInit{
   
   notes: Note[] = [];
+  formToggle: boolean = false;
 
-  constructor(private notesService: NotesService) {
+  constructor(private notesService: NotesService) {}
+
+  ngOnInit() {
     this.notes = this.notesService.getNotes();
+  }
+
+  toggleForm = (): void => {
+    this.formToggle = !this.formToggle;
   }
 }

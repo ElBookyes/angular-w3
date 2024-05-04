@@ -1,10 +1,13 @@
 <main>
     <header>
         <input type="text" class="search-bar" placeholder="Search">
-        <button></button>
+        <button (click)="toggleForm()"></button>
     </header>
+    @if(formToggle) {
+        <app-note-form [callback]="toggleForm"></app-note-form>
+    }
     <h1>Your Notes</h1>
-    <section>
+    <section class="note-section">
         @for (note of notes; track $index) {
             <div class="note">
                 <article class="note-content">

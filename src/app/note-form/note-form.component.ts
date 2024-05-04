@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NotesService } from '../notes.service';
 import { Note } from '../noteInterface';
 
@@ -19,6 +19,12 @@ export class NoteFormComponent {
 
   constructor(private notesService: NotesService) {}
 
+  @Input() callback: () => void = () => {};
+
+  callFormToggle() {
+    this.callback();
+  }
+
   onSubmit(): void {
     if (!this.noteForm.valid) return;
 
@@ -28,7 +34,6 @@ export class NoteFormComponent {
     };
 
     this.notesService.addNote(note);
-    console.log(this.notesService.getNotes());
     this.noteForm.reset();
   }
 

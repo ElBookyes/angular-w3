@@ -1,17 +1,20 @@
-<form [formGroup]="noteForm" (ngSubmit)="onSubmit();">
-    <div class="form-group">
-        <label for="title">Title</label>
-        <input type="text" [ngClass]="{'alert' : isTitleInvalid()}" id="title" formControlName="title">
-    </div>
-    @if (isTitleInvalid()){
-        <span class="alert" style="color: black;">Title must be at leaset 5 characters long</span>
-    }
-    <div class="form-group">
-        <label for="content">Content</label>
-        <textarea class="form-control" id="content" formControlName="content"></textarea>
-    </div>
-    @if (isContentInvalid()){
-        <span class="alert" style="color: black;">Content must be at leaset 7 characters long</span>
-    }
-    <button type="submit"  class="btn btn-primary" (click)="onSubmit()">Submit</button>
-</form>
+<div class="dark-bg">
+    <form [formGroup]="noteForm" class="add-note" (ngSubmit)="onSubmit();">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" [ngClass]="{'title-alert' : isTitleInvalid()}" id="title" formControlName="title">
+        </div>
+        @if (isTitleInvalid()){
+            <span class="title-alert">Title must be at leaset 5 characters long</span>
+        }
+        <div class="form-group">
+            <label for="content">Content</label>
+            <textarea class="form-control" [ngClass]="{'content-alert' : isContentInvalid()}" id="content" formControlName="content"></textarea>
+        </div>
+        @if (isContentInvalid()){
+            <span class="content-alert">Content must be at leaset 7 characters long</span>
+        }
+        <button type="submit"  class="btn btn-primary" (click)="onSubmit(); callFormToggle();">Submit</button>
+        <button (click)="callFormToggle();">Back</button>
+    </form>
+</div>
