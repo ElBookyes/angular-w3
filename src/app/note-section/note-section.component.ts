@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NotesService } from '../notes.service';
 import { Note } from '../noteInterface';
 
+
 @Component({
   selector: 'app-note-section',
   standalone: true,

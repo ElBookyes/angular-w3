@@ -1,3 +1,5 @@
+@use '../styles.scss' as *;
+
 main {
     height: 100%;
     width: 100%;
@@ -7,4 +9,9 @@ header {
     display: flex;
     gap: 1rem;
     padding: 1em 2em;
+    background-color: var(--background);
+
+    & .search-bar {
+        border-radius: 10px;;
+    }
 }
