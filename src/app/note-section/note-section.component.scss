@@ -155,6 +155,11 @@ h1 {
 }
 
 .no-notes {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     font-size: 1.5rem;
     color: var(--clr-primary);
 }

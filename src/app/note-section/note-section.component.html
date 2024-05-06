@@ -27,6 +27,9 @@
           }
         </div>
       }
+      @empty {
+        <p class="no-notes">No notes found</p>
+        }
     }
     @if (searchValue.length) {
       @for (note of filteredNotes; track $index) {
