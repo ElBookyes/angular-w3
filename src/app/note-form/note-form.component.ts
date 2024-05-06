@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NotesService } from '../notes.service';
 import { Note } from '../noteInterface';
 
@@ -11,15 +11,21 @@ import { Note } from '../noteInterface';
   templateUrl: './note-form.component.html',
   styleUrl: './note-form.component.scss'
 })
-export class NoteFormComponent {
-  noteForm = new FormGroup({
-    title: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    content: new FormControl('', [Validators.required, Validators.minLength(7)]),
-  });
+export class NoteFormComponent implements OnInit{
+  @Input() callback: () => void = () => {};
+
+  noteForm!: FormGroup;
+  editMode: boolean = false;
+  noteIndex: number = -1;
 
   constructor(private notesService: NotesService) {}
 
-  @Input() callback: () => void = () => {};
+  ngOnInit(): void {
+    this.noteForm = new FormGroup({
+      title: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      content: new FormControl('', [Validators.required, Validators.minLength(7)]),
+    });
+  }
 
   callFormToggle() {
     this.callback();
@@ -27,6 +33,11 @@ export class NoteFormComponent {
 
   onSubmit(): void {
     if (!this.noteForm.valid) return;
+    if (this.editMode) {
+      this.notesService.updateNote(this.noteIndex, this.noteForm.value);
+      this.editMode = false;
+      this.noteIndex = -1;
+    }
 
     const note: Note = {
       title: this.noteForm.value.title!,
@@ -37,12 +48,21 @@ export class NoteFormComponent {
     this.noteForm.reset();
   }
 
+  onSelected(note: Note, index: number): void {
+    this.noteForm.patchValue({ 
+      title: note.title,
+      content: note.content,
+    });
+
+    this.editMode = true;
+    this.noteIndex = index;
+  }
+
   isTitleInvalid() {
-    return this.noteForm.controls.title.invalid && this.noteForm.controls.title.touched;
+    return this.noteForm.controls['title'].invalid && this.noteForm.controls['title'].touched;
   }
 
   isContentInvalid() {
-    return this.noteForm.controls.content.invalid && this.noteForm.controls.content.touched;
+    return this.noteForm.controls['content'].invalid && this.noteForm.controls['content'].touched;
   }
-
 }

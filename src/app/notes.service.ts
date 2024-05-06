@@ -14,7 +14,8 @@ export class NotesService {
     }
   }
   
-  notes: Note[] = [];
+  private notes: Note[] = [];
+  editMode: boolean = false;
 
   addNote(note: Note) {
     this.notes.push(note);
@@ -28,6 +29,20 @@ export class NotesService {
 
   getNotes() {
     return this.notes;
+  }
+
+  getTotalNotes() {
+    return this.notes.length;
+  }
+
+  updateNote(index: number, note: Note) {
+    this.notes[index] = note;
+    localStorage.setItem('notes', JSON.stringify(this.notes));
+  }
+
+  deleteNote(index: number) {
+    this.notes.splice(index, 1);
+    localStorage.setItem('notes', JSON.stringify(this.notes));
   }
 
 }
