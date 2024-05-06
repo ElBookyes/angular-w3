@@ -7,6 +7,9 @@ import { Note } from './noteInterface';
 })
 export class NotesService {
 
+  private notes: Note[] = [];
+  editMode: boolean = false;
+
   constructor() {
     const data = localStorage.getItem('notes');
     if (data) {
@@ -14,9 +17,6 @@ export class NotesService {
     }
   }
   
-  private notes: Note[] = [];
-  editMode: boolean = false;
-
   addNote(note: Note) {
     this.notes.unshift(note);
     localStorage.setItem('notes', JSON.stringify(this.notes));
@@ -29,6 +29,12 @@ export class NotesService {
 
   getNotes() {
     return this.notes;
+  }
+
+  searchNotes(searchValue: string) {
+    return this.notes.filter(note => {
+      return note.title.toLowerCase().includes(searchValue.toLowerCase()) || note.content.toLowerCase().includes(searchValue.toLowerCase());
+    });
   }
 
   getTotalNotes() {
