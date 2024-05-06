@@ -18,7 +18,7 @@ export class NotesService {
   editMode: boolean = false;
 
   addNote(note: Note) {
-    this.notes.push(note);
+    this.notes.unshift(note);
     localStorage.setItem('notes', JSON.stringify(this.notes));
   }
 

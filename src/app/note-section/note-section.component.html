@@ -9,7 +9,7 @@
   <h1>Your Notes</h1>
   <section class="note-section">
     @for (note of notes; track $index) {
-    <div class="note" (click)="onSelected($index)">
+    <div class="note" (click)="onSelected($index)" @fadeInOut>
       <article class="note-content">
         <div class="note-header">
           <h2 class="note-title">{{ note.title }}</h2>
@@ -19,9 +19,9 @@
         </div>
       </article>
       @if (selectedNoteIndex == $index) {
-      <div class="note-options">
-        <button class="btn btn-primary" (click)="onEditPressed($index)">Edit</button>
-        <button class="btn btn-danger" (click)="onDeletePressed($index)">Delete</button>
+      <div class="note-actions" @fadeInOut>
+        <button (click)="onEditPressed($index)">Edit</button>
+        <button class="delete-button" (click)="onDeletePressed($index)">Delete</button>
       </div>
       }
     </div>

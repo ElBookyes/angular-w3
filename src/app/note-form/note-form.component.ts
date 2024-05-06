@@ -11,7 +11,7 @@ import { Note } from '../noteInterface';
   templateUrl: './note-form.component.html',
   styleUrl: './note-form.component.scss'
 })
-export class NoteFormComponent implements OnInit{
+export class NoteFormComponent implements OnInit {
   @Input() callback: () => void = () => {};
 
   noteForm!: FormGroup;

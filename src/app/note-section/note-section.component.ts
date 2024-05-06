@@ -1,20 +1,29 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { NotesService } from '../notes.service';
 import { Note } from '../noteInterface';
 import { NoteFormComponent } from '../note-form/note-form.component';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 
 @Component({
   selector: 'app-note-section',
   standalone: true,
-  imports: [NoteFormComponent, MatPaginatorModule],
+  imports: [NoteFormComponent],
   templateUrl: './note-section.component.html',
-  styleUrl: './note-section.component.scss'
+  styleUrl: './note-section.component.scss',
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0, scale: 0.8}),
+        animate('250ms', style({ opacity: 1, scale: 1 })),
+      ]),
+    ]),
+  ],
 })
 export class NoteSectionComponent implements OnInit{
 
   @ViewChild(NoteFormComponent) noteFormComponent!: NoteFormComponent;
+  @ViewChild("note-section") noteSection!: ElementRef<HTMLElement>;
 
   formToggle: boolean = false;
   selectedNoteIndex: number = -1;
