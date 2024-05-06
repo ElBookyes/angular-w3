@@ -23,7 +23,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
 export class NoteSectionComponent implements OnInit{
 
   @ViewChild(NoteFormComponent) noteFormComponent!: NoteFormComponent;
-  @ViewChild("note-section") noteSection!: ElementRef<HTMLElement>;
+  @ViewChild("noteSection") noteSection!: ElementRef<HTMLElement>;
 
   formToggle: boolean = false;
   selectedNoteIndex: number = -1;
@@ -57,5 +57,13 @@ export class NoteSectionComponent implements OnInit{
   onDeletePressed = (index: number): void => {
     this.notesService.deleteNote(index);
     this.loadNotes();
+  }
+
+  // unselect when user clicks outside of it.
+  @HostListener('document:click', ['$event'])
+  onClick(event: MouseEvent) {
+    if (!this.noteSection.nativeElement.contains(event.target as Node)) {
+      this.selectedNoteIndex = -1;
+    }
   }
 }

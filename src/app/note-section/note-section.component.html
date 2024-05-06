@@ -7,7 +7,7 @@
   <app-note-form [callback]="toggleForm"></app-note-form>
   }
   <h1>Your Notes</h1>
-  <section class="note-section">
+  <section class="note-section" #noteSection>
     @for (note of notes; track $index) {
     <div class="note" (click)="onSelected($index)" @fadeInOut>
       <article class="note-content">

@@ -13,6 +13,7 @@ header {
     --side-padding: calc(var(--grid-val)*2vw);
 
     display: flex;
+    justify-content: center;
     width: 100%;
     padding: 1em var(--side-padding);
     align-items: center;
@@ -20,7 +21,7 @@ header {
     background-color: var(--clr-secondary);
 
     & .search-bar {
-        width: 100%;
+        width: 30%;
         min-height: 2rem;
         border-radius: 5px;
         color: var(--clr-primary);
@@ -68,14 +69,6 @@ h1 {
     font-weight: bold;
     color: var(--clr-primary);
     margin: 1em 0;
-}
-
-.container {
-    --max-width: 1110px;
-    --container-padding: 1rem;
-    
-    width: min(var(--max-width), 100% - (var(--container-padding) * 2));  
-    margin-inline: auto;
 }
 
 .note-section {
