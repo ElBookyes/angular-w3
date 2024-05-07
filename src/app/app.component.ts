@@ -15,7 +15,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
              MatPaginatorModule,
              ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'angular-w3';

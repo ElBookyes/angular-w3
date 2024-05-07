@@ -3,13 +3,15 @@ import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angula
 import { Component, Input, OnInit } from '@angular/core';
 import { NotesService } from '../notes.service';
 import { Note } from '../noteInterface';
+import { fadeInOut } from '../animations';
 
 @Component({
   selector: 'app-note-form',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './note-form.component.html',
-  styleUrl: './note-form.component.scss'
+  styleUrl: './note-form.component.scss',
+  animations: [fadeInOut],
 })
 export class NoteFormComponent implements OnInit {
   @Input() callback: () => void = () => {};
@@ -27,7 +29,7 @@ export class NoteFormComponent implements OnInit {
     });
   }
 
-  callFormToggle() {
+  callFormToggle(): void {
     this.callback();
   }
 
@@ -37,6 +39,7 @@ export class NoteFormComponent implements OnInit {
       this.notesService.updateNote(this.noteIndex, this.noteForm.value);
       this.editMode = false;
       this.noteIndex = -1;
+      return;
     }
 
     const note: Note = {
@@ -58,11 +61,11 @@ export class NoteFormComponent implements OnInit {
     this.noteIndex = index;
   }
 
-  isTitleInvalid() {
+  isTitleInvalid(): boolean {
     return this.noteForm.controls['title'].invalid && this.noteForm.controls['title'].touched;
   }
 
-  isContentInvalid() {
+  isContentInvalid(): boolean {
     return this.noteForm.controls['content'].invalid && this.noteForm.controls['content'].touched;
   }
 }

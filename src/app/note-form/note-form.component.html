@@ -1,5 +1,5 @@
 <div class="dark-bg">
-    <form [formGroup]="noteForm" class="add-note container" (ngSubmit)="onSubmit();">
+    <form [formGroup]="noteForm" class="add-note container" (ngSubmit)="onSubmit();" @fadeInOut>
         <label for="title">Title</label>
         <input type="text" [ngClass]="{'title-alert' : isTitleInvalid()}" id="title" formControlName="title">
         @if (isTitleInvalid()){
