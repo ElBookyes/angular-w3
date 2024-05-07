@@ -17,38 +17,37 @@ export class NotesService {
     }
   }
   
-  addNote(note: Note) {
+  addNote(note: Note): void {
     this.notes.unshift(note);
     localStorage.setItem('notes', JSON.stringify(this.notes));
   }
 
-  clearNotes() {
+  clearNotes(): void {
     this.notes = [];
     localStorage.removeItem('notes');
   }
 
-  getNotes() {
+  getNotes(): Note[] {
     return this.notes;
   }
 
-  searchNotes(searchValue: string) {
+  searchNotes(searchValue: string): Note[] {
     return this.notes.filter(note => {
       return note.title.toLowerCase().includes(searchValue.toLowerCase()) || note.content.toLowerCase().includes(searchValue.toLowerCase());
     });
   }
 
-  getTotalNotes() {
+  getTotalNotes(): number {
     return this.notes.length;
   }
 
-  updateNote(index: number, note: Note) {
+  updateNote(index: number, note: Note): void {
     this.notes[index] = note;
     localStorage.setItem('notes', JSON.stringify(this.notes));
   }
 
-  deleteNote(index: number) {
+  deleteNote(index: number): void {
     this.notes.splice(index, 1);
     localStorage.setItem('notes', JSON.stringify(this.notes));
   }
-
 }

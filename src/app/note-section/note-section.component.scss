@@ -85,12 +85,10 @@ h1 {
     padding: 1em;
     scrollbar-color: var(--clr-primary) var(--background);
     scrollbar-width: thin;
-    &::placeholder {
+    &::placeholder, 
+    &::-ms-input-placeholder {
         color: var(--clr-primary);
         opacity: 1; // Firefox
-    }
-    &::-ms-input-placeholder { /* Microsoft Edge */
-        color: var(--clr-primary);
     }
     &::-webkit-scrollbar {
         width: 0.5rem;
@@ -141,7 +139,7 @@ h1 {
             border-radius: 5px;
             padding: 0.5rem 1rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: background 0.3 ease, color 0.3s ease;
             &:hover,
             &:focus {
                 background: var(--clr-accent);
