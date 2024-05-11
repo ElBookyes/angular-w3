@@ -17,8 +17,8 @@ export class NoteFormComponent implements OnInit {
   @Input() callback: () => void = () => {};
 
   noteForm!: FormGroup;
-  editMode: boolean = false;
-  noteIndex: number = -1;
+  private editMode: boolean = false;
+  private noteIndex: number = -1;
 
   constructor(private notesService: NotesService) {}
 
