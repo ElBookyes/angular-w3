@@ -19,8 +19,6 @@ export class NoteComponent {
   @Output() public onEditNote: EventEmitter<number> = new EventEmitter<number>();
   @Output() public onDeleteNote: EventEmitter<number> = new EventEmitter<number>();
 
-  constructor(private NoteSectionComponent: NoteSectionComponent) { }
-
   processSelectedNote = (index: number): void => {
     this.onSelectedNote.emit(index);
   }
