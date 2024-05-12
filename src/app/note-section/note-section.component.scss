@@ -76,13 +76,14 @@ h1 {
 
 .note-section {
     display: grid;
-    margin: 0 auto;
     overflow-y: auto;
     overflow-x: hidden;
     max-height: 70%;
     grid-template-columns: repeat(auto-fill, minmax(clamp(280px, 20vw, 450px), 1fr));
     gap: 1rem;
     padding: 1em;
+    margin: 0 auto;
+    justify-items: center;
     scrollbar-color: var(--clr-primary) var(--background);
     scrollbar-width: thin;
     &::placeholder, 
@@ -93,62 +94,8 @@ h1 {
     &::-webkit-scrollbar {
         width: 0.5rem;
     }
-    @include mq(84em) {
+    @include mq(75em) {
         max-width: 70%;
-    }
-}
-
-.note {
-    position: relative;
-    display: grid;
-    width: clamp(280px, 20vw, 400px);
-    height: 280px;
-    justify-self: center;
-    background: var(--clr-primary);
-    color: var(--clr-secondary);
-    padding: 1em;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    &:hover {
-        transform: scale(1.05);
-    }
-    & .note-title {
-        font-size: 1.5rem;
-        font-weight: bolder;
-        color: var(--background);
-    }
-    & .note-content {
-        height: 100%;
-        overflow: hidden;
-        font-weight: 600;
-        font-size: 1rem;
-    }
-    & .note-actions {
-        display: flex;
-        align-self: end; 
-        justify-self: end; 
-        gap: 1rem;
-        & button {
-            background: var(--background);
-            color: var(--clr-text);
-            border: 0;
-            border-radius: 5px;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            transition: background 0.3 ease, color 0.3s ease;
-            &:hover,
-            &:focus {
-                background: var(--clr-accent);
-                color: var(--clr-primary);
-            }
-        }
-        .delete-button {
-            background: var(--alert);
-        }
     }
 }
 

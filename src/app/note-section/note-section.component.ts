@@ -4,12 +4,13 @@ import { Note } from '../noteInterface';
 import { NoteFormComponent } from '../note-form/note-form.component';
 import { FormsModule } from '@angular/forms';
 import { fadeInOut } from '../animations';
+import { NoteComponent } from '../note/note.component';
 
 
 @Component({
   selector: 'app-note-section',
   standalone: true,
-  imports: [NoteFormComponent, FormsModule],
+  imports: [NoteFormComponent, FormsModule, NoteComponent],
   templateUrl: './note-section.component.html',
   styleUrl: './note-section.component.scss',
   animations: [fadeInOut],
@@ -18,13 +19,13 @@ import { fadeInOut } from '../animations';
 
 export class NoteSectionComponent implements OnInit{
 
+  @ViewChild(NoteFormComponent) noteFormComponent!: NoteFormComponent;
+  @ViewChild("noteSection") noteSection!: ElementRef<HTMLElement>;
   searchValue: string = '';
   formToggle: boolean = false;
   selectedNoteIndex: number = -1;
   notes: Note[] = [];
   filteredNotes: Note[] = [];
-  @ViewChild(NoteFormComponent) noteFormComponent!: NoteFormComponent;
-  @ViewChild("noteSection") noteSection!: ElementRef<HTMLElement>;
 
   constructor(private notesService: NotesService) {}
 

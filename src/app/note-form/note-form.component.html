@@ -10,7 +10,7 @@
         @if (isContentInvalid()){
             <span class="content-alert">Content must be at leaset 7 characters long</span>
         }
-        <button type="submit"  class="btn btn-primary" (click)="onSubmit(); callFormToggle();">Submit</button>
+        <button [disabled]="!noteForm.valid" [ngClass]="!noteForm.valid ? 'disabled-button' : '' " type="submit" (click)="onSubmit(); callFormToggle();">Submit</button>
         <button (click)="callFormToggle();">Back</button>
     </form>
 </div>

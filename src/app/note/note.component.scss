@@ -1,0 +1,53 @@
+@use '../styles.scss' as *;
+
+.note {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: clamp(280px, 20vw, 400px);
+    height: 280px;
+    background: var(--clr-primary);
+    color: var(--clr-secondary);
+    padding: 1em;
+    border-radius: 10px;
+    gap: 1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    &:hover {
+        transform: scale(1.05);
+    }
+    & .note-title {
+        font-size: 1.5rem;
+        font-weight: bolder;
+        color: var(--background);
+    }
+    & .note-content {
+        height: 100%;
+        overflow: hidden;
+        font-weight: 600;
+        font-size: 1rem;
+    }
+    & .note-actions {
+        display: flex;
+        align-self: end; 
+        justify-self: end; 
+        gap: 1rem;
+        & button {
+            background: var(--background);
+            color: var(--clr-text);
+            border: 0;
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: background 0.3 ease, color 0.3s ease;
+            &:hover,
+            &:focus {
+                background: var(--clr-accent);
+                color: var(--clr-primary);
+            }
+        }
+        .delete-button {
+            background: var(--alert);
+        }
+    }
+}
