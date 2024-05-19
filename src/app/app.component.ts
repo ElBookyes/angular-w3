@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NoteFormComponent } from './note-form/note-form.component';
-import { NoteSectionComponent } from './note-section/note-section.component';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { NoteFormComponent } from './components/note-form/note-form.component';
+import { NoteSectionComponent } from './components/note-section/note-section.component';
 
 
 
@@ -11,9 +10,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
   standalone: true,
   imports: [ RouterOutlet, 
              NoteFormComponent, 
-             NoteSectionComponent, 
-             MatPaginatorModule,
-             ],
+             NoteSectionComponent,
+            ],
   templateUrl: './app.component.html',
 })
 export class AppComponent {

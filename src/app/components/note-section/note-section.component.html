@@ -48,12 +48,4 @@
   [totalItems]="totalItems"
   (pageChanged)="onPageChange($event)"
   ></app-pagination>
-
-  <!-- <div class="pagination-controls">
-    <button (click)="goToPreviousPage()" [disabled]="currentPage === 1">Previous</button>
-    <button (click)="goToNextPage()" [disabled]="currentPage === totalPages">Next</button>
-    <select (change)="goToPage($event)">
-      <option *ngFor="let page of pageNumbers" [value]="page">{{ page }}</option>
-    </select>
-  </div> -->
 </main>

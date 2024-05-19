@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component, Input, OnInit } from '@angular/core';
-import { NotesService } from '../notes.service';
-import { Note } from '../noteInterface';
-import { fadeInOut } from '../animations';
+import { Component, Input, OnInit, inject } from '@angular/core';
+import { NotesService } from '../../services/notes.service';
+import { Note } from '../../models/noteInterface';
+import { fadeInOut } from '../../animations/animations';
 
 @Component({
   selector: 'app-note-form',
@@ -20,7 +20,7 @@ export class NoteFormComponent implements OnInit {
   private editMode: boolean = false;
   private noteIndex: number = -1;
 
-  constructor(private notesService: NotesService) {}
+  private notesService: NotesService = inject(NotesService);
 
   ngOnInit(): void {
     this.noteForm = new FormGroup({

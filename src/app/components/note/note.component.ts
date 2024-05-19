@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { NoteSectionComponent } from '../note-section/note-section.component';
-import { fadeInOut } from '../animations';
+import { fadeInOut } from '../../animations/animations';
 
 @Component({
   selector: 'app-note',

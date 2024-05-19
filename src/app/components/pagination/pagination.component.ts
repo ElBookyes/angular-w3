@@ -17,10 +17,6 @@ export class PaginationComponent {
     return Math.ceil(this.totalItems / this.itemsPerPage);
   }
 
-  get pageNumbers(): number[] {
-    return Array.from({ length: this.totalPages }, (_, i) => i + 1);
-  }
-
   changePage = (page: number): void => {
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;

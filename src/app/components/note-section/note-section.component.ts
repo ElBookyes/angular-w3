@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef, HostListener, OnChanges, SimpleChanges, AfterViewInit } from '@angular/core';
-import { NotesService } from '../notes.service';
-import { Note } from '../noteInterface';
+import { Component, OnInit, ViewChild, ElementRef, HostListener, OnChanges, SimpleChanges, inject } from '@angular/core';
+import { NotesService } from '../../services/notes.service';
+import { Note } from '../../models/noteInterface';
 import { NoteFormComponent } from '../note-form/note-form.component';
 import { FormsModule } from '@angular/forms';
-import { fadeInOut } from '../animations';
+import { fadeInOut } from '../../animations/animations';
 import { NoteComponent } from '../note/note.component';
 import { PaginationComponent } from '../pagination/pagination.component';
 
@@ -35,7 +35,7 @@ export class NoteSectionComponent implements OnInit, OnChanges{
   totalItems = 0;
   totalPages: number = 0;
 
-  constructor(private notesService: NotesService) {}
+  private notesService: NotesService = inject(NotesService);
 
   ngOnInit(): void {
     this.notesService.getNoteSubject().subscribe(notes => {
@@ -89,30 +89,6 @@ export class NoteSectionComponent implements OnInit, OnChanges{
   onPageChange(page: number): void {
     this.currentPage = page;
     this.loadNotes();
-  }
-
-  goToPreviousPage(): void {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      this.loadNotes();
-    }
-  }
-
-  goToNextPage(): void {
-    if (this.currentPage < this.totalPages) {
-      this.currentPage++;
-      this.loadNotes();
-    }
-  }
-
-  goToPage = (event: Event): void => {
-    const target = event.target as HTMLInputElement;
-    const page = target.value;
-    const pageNumber = parseInt(page, 10);
-    if (pageNumber && pageNumber >= 1 && pageNumber <= this.totalPages && pageNumber !== this.currentPage) {
-      this.currentPage = pageNumber;
-      this.loadNotes();
-    }
   }
 
   updateFilteredNotes(): void {
