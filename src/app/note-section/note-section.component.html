@@ -9,7 +9,7 @@
   <h1>Your Notes</h1>
   <section class="note-section" #noteSection>
     @if (!searchValue.length) {
-      @for (note of notes; track $index) {
+      @for (note of paginatedNotes; track $index) {
         <app-note 
         [title]="note.title"
         [content]="note.content"
@@ -41,4 +41,19 @@
       }
     }
   </section>
+
+  <app-pagination
+  [currentPage]="currentPage"
+  [itemsPerPage]="itemsPerPage"
+  [totalItems]="totalItems"
+  (pageChanged)="onPageChange($event)"
+  ></app-pagination>
+
+  <!-- <div class="pagination-controls">
+    <button (click)="goToPreviousPage()" [disabled]="currentPage === 1">Previous</button>
+    <button (click)="goToNextPage()" [disabled]="currentPage === totalPages">Next</button>
+    <select (change)="goToPage($event)">
+      <option *ngFor="let page of pageNumbers" [value]="page">{{ page }}</option>
+    </select>
+  </div> -->
 </main>
