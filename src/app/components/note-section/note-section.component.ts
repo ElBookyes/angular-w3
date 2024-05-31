@@ -18,7 +18,7 @@ import { PaginationComponent } from '../pagination/pagination.component';
 })
 
 
-export class NoteSectionComponent implements OnInit, OnChanges{
+export class NoteSectionComponent implements OnInit {
 
   @ViewChild(NoteFormComponent) noteFormComponent!: NoteFormComponent;
   @ViewChild("noteSection") noteSection!: ElementRef<HTMLElement>;
@@ -45,12 +45,6 @@ export class NoteSectionComponent implements OnInit, OnChanges{
       this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
       this.updateFilteredNotes();
     });
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['notes']) {
-      this.loadNotes();
-    }
   }
 
   loadNotes(): void {
